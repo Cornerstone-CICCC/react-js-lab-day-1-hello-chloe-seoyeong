@@ -54,19 +54,20 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
     //     return { ...prevState, favoriteFoods: updateFavFoods };
     //   });
     // };
-
-    // if (type === "checkbox") {
-    //   const checked = e.target.checked;
-    //   setFormData((prevState) => ({
-    //     ...prevState,
-    //     [name]: checked,
-    //   }));
-    // } else {
-    // }
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    setFormData((prevState) => {
+      const updateSkills = checked
+        ? [...prevState.skills, value]
+        : prevState.skills.filter((level) => level !== value);
+      return { ...prevState, skills: updateSkills };
+    });
   };
 
   const handleSumit = (e: FormEvent<HTMLFormElement>) => {
@@ -156,7 +157,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
               name="skills"
               checked={formData.skills.includes("TypeScript")}
               value="TypeScript"
-              onChange={handleInputChange}
+              onChange={handleCheckboxChange}
             />
           </label>
           <label>
@@ -166,7 +167,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
               name="skills"
               checked={formData.skills.includes("React")}
               value="React"
-              onChange={handleInputChange}
+              onChange={handleCheckboxChange}
             />
           </label>
           <label>
@@ -176,7 +177,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
               name="skills"
               checked={formData.skills.includes("Node")}
               value="Node"
-              onChange={handleInputChange}
+              onChange={handleCheckboxChange}
             />
           </label>
           <label>
@@ -186,7 +187,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
               name="skills"
               checked={formData.skills.includes("NoSQL")}
               value="NoSQL"
-              onChange={handleInputChange}
+              onChange={handleCheckboxChange}
             />
           </label>
         </fieldset>
