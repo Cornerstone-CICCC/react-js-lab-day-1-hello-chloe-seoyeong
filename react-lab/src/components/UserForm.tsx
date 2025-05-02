@@ -24,7 +24,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
         age: userToEdit.age,
         education: userToEdit.education,
         gender: userToEdit.gender,
-        skills: [],
+        skills: userToEdit.skills.map((skill) => skill),
         bio: userToEdit.bio,
       });
     }
@@ -33,42 +33,33 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    const { name, value } = e.target as HTMLInputElement;
+    const { name, type, value, checked } = e.target as HTMLInputElement;
+
     // const checked = (e.target as HTMLInputElement).checked;
-    // if (type === "checkbox") {
-    //   setFormData((prevState) => {
-    //     console.log([...prevState.skills]);
-    //     const updateSkill = checked
-    //       ? [...prevState.skills, value]
-    //       : // : prevState.skills;
-    //         prevState.skills.filter((level) => level !== value);
-    //     console.log(updateSkill);
-    //     return { ...prevState, skills: updateSkill };
-    //   });
-    // const handleCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
-    //   const { value, checked } = e.target;
-    //   setFormData((prevState) => {
-    //     const updateFavFoods = checked
-    //       ? [...prevState.favoriteFoods, value]
-    //       : prevState.favoriteFoods.filter((level) => level !== value);
-    //     return { ...prevState, favoriteFoods: updateFavFoods };
-    //   });
-    // };
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    if (type === "checkbox") {
+      setFormData((prevState) => {
+        const updateSkills = checked
+          ? [...prevState.skills, value]
+          : prevState.skills.filter((level) => level !== value);
+        return { ...prevState, skills: updateSkills };
+      });
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
-  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = e.target;
-    setFormData((prevState) => {
-      const updateSkills = checked
-        ? [...prevState.skills, value]
-        : prevState.skills.filter((level) => level !== value);
-      return { ...prevState, skills: updateSkills };
-    });
-  };
+  // const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const { value, checked } = e.target;
+  //   setFormData((prevState) => {
+  //     const updateSkills = checked
+  //       ? [...prevState.skills, value]
+  //       : prevState.skills.filter((level) => level !== value);
+  //     return { ...prevState, skills: updateSkills };
+  //   });
+  // };
 
   const handleSumit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -157,7 +148,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
               name="skills"
               checked={formData.skills.includes("TypeScript")}
               value="TypeScript"
-              onChange={handleCheckboxChange}
+              onChange={handleInputChange}
             />
           </label>
           <label>
@@ -167,7 +158,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
               name="skills"
               checked={formData.skills.includes("React")}
               value="React"
-              onChange={handleCheckboxChange}
+              onChange={handleInputChange}
             />
           </label>
           <label>
@@ -177,7 +168,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
               name="skills"
               checked={formData.skills.includes("Node")}
               value="Node"
-              onChange={handleCheckboxChange}
+              onChange={handleInputChange}
             />
           </label>
           <label>
@@ -187,7 +178,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
               name="skills"
               checked={formData.skills.includes("NoSQL")}
               value="NoSQL"
-              onChange={handleCheckboxChange}
+              onChange={handleInputChange}
             />
           </label>
         </fieldset>

@@ -35,13 +35,34 @@ const App = () => {
 
   /* Your handlers here */
   const handleAddUser = (user: Omit<User, "id">) => {
-    setUsers((prevState) => [
-      ...prevState,
-      {
-        ...user,
-        id: uuidv4(),
-      },
-    ]);
+    const newUser = {
+      ...user,
+      id: uuidv4(),
+    };
+    setUsers((prevState) => [...prevState, newUser]);
+    setIsView(true);
+    setSelectedUser(newUser);
+  };
+
+  const handleDeleteUser = (id: string) =>
+    setUsers((prevState) => prevState.filter((user) => user.id !== id));
+
+  const handleViewUser = (id: string) => {
+    const foundUser = users.find((user) => user.id === id);
+    if (!foundUser) return;
+    setSelectedUser(foundUser);
+    setIsView(true);
+  };
+
+  const handleUpdateUser = (editedUser: User) => {
+    setUsers((prevState) =>
+      prevState.map((user) =>
+        user.id === editedUser.id ? { ...user, ...editedUser } : user
+      )
+    );
+    setIsView(true);
+    setSelectedUser(editedUser);
+    setUserToEdit(null);
   };
 
   const handleEditUser = (id: string) => {
@@ -52,22 +73,6 @@ const App = () => {
       setUserToEdit(null);
     }
     setIsView(false);
-  };
-  const handleDeleteUser = (id: string) =>
-    setUsers((prevState) => prevState.filter((user) => user.id !== id));
-  const handleViewUser = (id: string) => {
-    const foundUser = users.find((user) => user.id === id);
-    if (!foundUser) return;
-    setSelectedUser(foundUser);
-    setIsView(true);
-  };
-  const handleUpdateUser = (editedUser: User) => {
-    setUsers((prevState) =>
-      prevState.map((user) =>
-        user.id === editedUser.id ? { ...user, ...editedUser } : user
-      )
-    );
-    setUserToEdit(null);
   };
 
   return (
