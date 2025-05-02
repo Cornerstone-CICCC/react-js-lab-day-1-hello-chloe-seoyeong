@@ -4,6 +4,6 @@ export interface User {
   age: number;
   education: string;
   gender: string;
-  // skills: string[];
+  skills: string[];
   bio: string;
 }

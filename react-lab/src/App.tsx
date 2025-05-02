@@ -15,7 +15,7 @@ const App = () => {
       age: 32,
       education: "College",
       gender: "other",
-      // skills: ["Node"],
+      skills: ["Node"],
       bio: "Super smart",
     },
     {
@@ -24,7 +24,7 @@ const App = () => {
       age: 38,
       education: "Grade School",
       gender: "other",
-      // skills: ["React", "TypeScript"],
+      skills: ["React", "TypeScript"],
       bio: "Super super smart",
     },
   ]);
@@ -51,6 +51,7 @@ const App = () => {
     } else {
       setUserToEdit(null);
     }
+    setIsView(false);
   };
   const handleDeleteUser = (id: string) =>
     setUsers((prevState) => prevState.filter((user) => user.id !== id));

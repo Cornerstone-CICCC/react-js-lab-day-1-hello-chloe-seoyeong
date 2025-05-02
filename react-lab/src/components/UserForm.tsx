@@ -13,7 +13,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
     age: 0,
     education: "",
     gender: "",
-    // skills: [],
+    skills: [],
     bio: "",
   });
   useEffect(() => {
@@ -24,7 +24,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
         age: userToEdit.age,
         education: userToEdit.education,
         gender: userToEdit.gender,
-        // skills: [],
+        skills: [],
         bio: userToEdit.bio,
       });
     }
@@ -87,7 +87,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
       age: 0,
       education: "",
       gender: "",
-      // skills: [],
+      skills: [],
       bio: "",
     });
   };
@@ -148,7 +148,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
             />
           </label>
         </fieldset>
-        {/* <fieldset>
+        <fieldset>
           <label>
             TypeScript
             <input
@@ -189,7 +189,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
               onChange={handleInputChange}
             />
           </label>
-        </fieldset> */}
+        </fieldset>
         <textarea
           name="bio"
           value={formData.bio}
