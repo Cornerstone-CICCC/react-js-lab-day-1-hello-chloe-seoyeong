@@ -82,7 +82,7 @@ const App = () => {
         onUpdate={handleUpdateUser}
         userToEdit={userToEdit}
       />
-      <ul>
+      <ul style={{ paddingLeft: 0 }}>
         {users.map((user) => (
           <UserList
             key={user.id}

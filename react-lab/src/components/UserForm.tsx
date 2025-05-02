@@ -85,9 +85,10 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
       <form onSubmit={handleSumit}>
         <input
+          style={{ padding: "8px" }}
           type="text"
           name="fullname"
           placeholder="fullname"
@@ -95,6 +96,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
           onChange={handleInputChange}
         />
         <input
+          style={{ padding: "8px" }}
           type="number"
           name="age"
           placeholder="age"
@@ -102,6 +104,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
           onChange={handleInputChange}
         />
         <select
+          style={{ padding: "8px" }}
           name="education"
           value={formData.education}
           onChange={handleInputChange}
@@ -111,7 +114,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
           <option value="High School">High School</option>
           <option value="College">College</option>
         </select>
-        <fieldset>
+        <fieldset style={{ margin: 0 }}>
           <label>
             Male
             <input
@@ -140,7 +143,7 @@ const UserForm = ({ onAdd, onUpdate, userToEdit }: Props) => {
             />
           </label>
         </fieldset>
-        <fieldset>
+        <fieldset style={{ margin: 0 }}>
           <label>
             TypeScript
             <input

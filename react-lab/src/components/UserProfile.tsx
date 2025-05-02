@@ -7,10 +7,15 @@ type Props = {
 };
 const UserProfile = ({ user }: Props) => {
   return (
-    <div>
+    <div
+      style={{
+        borderTop: "1px solid #191919",
+        marginTop: "2rem",
+      }}
+    >
       <h3>{user.fullname}'s Info</h3>
       <div>
-        <ul>
+        <ul style={{ paddingLeft: 0 }}>
           <li
             style={{
               display: "flex",
